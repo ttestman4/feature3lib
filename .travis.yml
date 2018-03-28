@@ -29,6 +29,9 @@ install:
 #   on:
 #     branch: master
 
+before_deploy: 
+  - cd dist/@ttestman4/lib2
+
 deploy:
   provider: npm
   skip-cleanup: true
@@ -36,9 +39,11 @@ deploy:
   api_key: "$NPM_TOKEN"
   verbose: true
 # tag: next
-  local-dir: dist/@ttestman4/lib2.tgz
   on:
     branch: master
+
+after_deploy:
+  - cd ../../..
 
 script:
   # Use Chromium instead of Chrome.
